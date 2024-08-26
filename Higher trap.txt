@@ -1,0 +1,16 @@
+Higher trap
+
+local trapPart = script.Parent
+
+local function onTouch(otherPart)
+	local character = otherPart.Parent
+	local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+
+	-- Evaluates if a Humanoid was found
+	if humanoid then
+		print("Found a Humanoid")
+		humanoid.Health -= 20
+	end
+end
+
+trapPart.Touched:Connect(onTouch)

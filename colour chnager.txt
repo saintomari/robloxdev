@@ -1,0 +1,6 @@
+colour chnager
+--local Prac = workspace.Prac
+--Prac.Color = Color3.fromRGB(50, 240, 255)
+
+local colorPart = script.Parent
+colorPart.Color = Color3.fromRGB(50, 240, 255)

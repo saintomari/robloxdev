@@ -1,0 +1,11 @@
+Lava trap
+local trap = script.Parent
+local colorPart = script.Parent
+colorPart.Color = Color3.fromRGB(255, 88, 5)
+local function onTouch(objectTouched)
+	print("Something touched the trap")
+	-- Destroy the touching object
+	objectTouched:Destroy()
+end
+
+trap.Touched:Connect(onTouch)

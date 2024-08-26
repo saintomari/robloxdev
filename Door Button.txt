@@ -1,0 +1,34 @@
+Door Button
+
+local button = script.Parent
+-- Reminder: Replace the name of the part, Gate, with the one in your project
+local gate = workspace.PoliceStation.Door1.Door
+
+-- Set the initial color of the button to green
+button.Color = Color3.fromRGB(61, 255, 51)
+button.BrickColor = BrickColor.Green() -- Initial color is green
+
+local function buttonPressed()
+	print("button touched")
+	-- Change button to red to give player feedback
+
+	button.BrickColor = BrickColor.Red()
+	-- Make the gate invisible
+	gate.Transparency = 1
+	-- Make it so the player can walk through the gate
+	gate.CanCollide = false
+
+	-- Wait 10 seconds
+	wait(10)
+
+	-- Change button back to green
+
+	button.BrickColor = BrickColor.Green()
+	-- Reset the gate's transparency and collision
+	gate.Transparency = 0
+	gate.CanCollide = true
+end
+
+button.Touched:Connect(buttonPressed)
+
+--can be used to change materials, colour on lcick

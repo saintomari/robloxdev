@@ -1,0 +1,22 @@
+TimerModule
+
+
+local TimerModule = {}
+
+TimerModule.timePassed = 0
+TimerModule.raceActive = false
+
+function TimerModule:startTimer()
+	self.raceActive = true
+	while self.raceActive do
+		task.wait(1)
+		self.timePassed += 1
+		print("Time Passed: " .. self.timePassed)
+	end
+end
+
+function TimerModule:stopTimer()
+	self.raceActive = false
+end
+
+return TimerModule

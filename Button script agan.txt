@@ -1,0 +1,18 @@
+Button script agan
+
+-- Insert this script into button
+-- Turns the button green when something touches the button.
+
+local button = script.Parent
+local bridge = workspace.Bridge
+
+local function buttonPressed()
+	print("button touched")
+	button.Color = Color3.fromRGB(0, 170, 0)
+	bridge.Transparency = 0
+	bridge.CanCollide = true
+end
+
+button.Touched:Connect(buttonPressed)
+
+can be used to change properties like materials potrntially make wall upgraders
