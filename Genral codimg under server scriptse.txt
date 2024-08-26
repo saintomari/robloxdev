@@ -1,0 +1,23 @@
+Genral codimg under server scriptservice
+print("Hello world!")
+local myAnimal
+local myAnimal = "Porcupines"
+print(myAnimal)
+local firstAnimal = "porcupines"
+local secondAnimal = "dolphins"
+
+print("I like " .. firstAnimal .. " and " .. secondAnimal)
+-- Changes the color of a part
+
+workspace.Part.Color = Color3.fromRGB(255, 255, 127)
+
+
+
+local function printFood()
+	print("Curry!")
+    end
+
+printFood()
+
+
+catapult coding refer to turotial and where to placfe files

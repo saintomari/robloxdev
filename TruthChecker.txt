@@ -1,0 +1,10 @@
+--TruthChecker
+--Can be used to change
+
+local mysteryPart = workspace.MysteryPart
+
+-- Evaluates as true if MysteryPart is fully opaque
+if mysteryPart.Transparency == 0 then
+	workspace.LieDetector.Color = Color3.fromRGB(0, 255, 0)
+	mysteryPart.Transparency = .2
+end

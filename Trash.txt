@@ -1,0 +1,17 @@
+--Trash
+--can be used to call to delete things
+
+-- Objects to use as arguments
+local cementBlock = workspace.CementBlock
+local glassBottle = workspace.GlassBottle
+
+--Destroys trash and cleans up recyclables
+local function sortGarbage(trash,recyclable)
+	local sparkle = Instance.new("ParticleEmitter")
+
+	trash:Destroy()
+	sparkle.Parent = recyclable
+end
+
+-- Pass in the arguments
+sortGarbage(cementBlock, glassBottle)
