@@ -1,0 +1,28 @@
+local button = script.Parent
+local gate = workspace.PoliceStation.Door1.Door
+local TimerModule = require(game.ReplicatedStorage.TimerModule)
+
+local function buttonPressed()
+	print("button touched")
+	if TimerModule.medalType == "Silver" then
+		-- Change button to red to give player feedback
+		button.BrickColor = BrickColor.Red()
+		-- Make the gate invisible
+		gate.Transparency = 1
+		-- Make it so the player can walk through the gate
+		gate.CanCollide = false
+
+		-- Wait 10 seconds
+		wait(10)
+
+		-- Change button back to green
+		button.BrickColor = BrickColor.Green()
+		-- Reset the gate's transparency and collision
+		gate.Transparency = 0
+		gate.CanCollide = true
+	else
+		print("You don't have a silver medal!")
+	end
+end
+
+button.Touched:Connect(buttonPressed)

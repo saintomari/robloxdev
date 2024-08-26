@@ -1,0 +1,32 @@
+local finishLine = script.Parent
+local TimerModule = require(game.ReplicatedStorage.TimerModule)
+
+local function finish()
+	TimerModule:stopTimer()
+	print("You finished in " .. TimerModule.timePassed .. " seconds!")
+
+	if TimerModule.timePassed <= 10 then
+		print("You get a gold medal!")
+		TimerModule.medalType = "Gold"
+	elseif TimerModule.timePassed > 10 and TimerModule.timePassed <= 20 then
+		print("You get a silver medal!")
+		TimerModule.medalType = "Silver"
+	elseif TimerModule.timePassed > 20 and TimerModule.timePassed <= 30 then
+		print("You get a bronze medal!")
+		TimerModule.medalType = "Bronze"
+	else
+		print("Try again!")
+		TimerModule.medalType = "None"
+	end
+end
+
+local function partTouched(otherPart)
+	local character = otherPart.Parent
+	local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+
+	if humanoid and TimerModule.raceActive then
+		finish()
+	end
+end
+
+finishLine.Touched:Connect(partTouched)
