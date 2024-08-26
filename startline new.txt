@@ -1,0 +1,22 @@
+startline new
+
+local startLine = script.Parent
+local TimerModule = require(game.ReplicatedStorage.TimerModule)
+
+local function partTouched(otherPart)
+	local character = otherPart.Parent
+	local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+
+	if humanoid and not TimerModule.raceActive then
+		-- Unanchor all Powerup parts in the Workspace
+		for _, part in pairs(workspace:GetDescendants()) do
+			if part.Name == "Powerup" then
+				part.Anchored = false
+			end
+		end
+
+		TimerModule:startTimer()
+	end
+end
+
+startLine.Touched:Connect(partTouched)

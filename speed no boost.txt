@@ -1,0 +1,17 @@
+speed no boost
+local speedBoost = script.Parent
+
+local function onTouch(otherPart)
+	local character = otherPart.Parent
+	local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+
+	if humanoid and humanoid.WalkSpeed >= 50 then
+		humanoid.WalkSpeed -= 20
+		
+		speedBoost.CanTouch = false
+		task.wait(1)
+		speedBoost.CanTouch = true
+	end
+end
+
+speedBoost.Touched:Connect(onTouch)

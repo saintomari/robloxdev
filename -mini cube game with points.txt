@@ -1,0 +1,84 @@
+-mini cube game with points
+local pointPart = script.Parent
+--local storage = game:GetService("ServerStorage")
+
+-- Gives some points
+local blue = Color3.fromRGB(0, 0, 255)
+-- Gives more points
+local green = Color3.fromRGB(0, 255, 0)
+-- Makes players lose points
+local red = Color3.fromRGB(255, 0, 0)
+
+-- gold given to players
+local smallPoints = 10
+local largePoints = 50
+local losePoints = 100
+
+local Players = game:GetService("Players")
+
+local function givePoints(player)
+	local currentColor = pointPart.Color
+
+	local playerStats = player:WaitForChild("leaderstats")
+	local playerPoints = playerStats:WaitForChild("Points")
+
+	-- Gives player gold based on the color of the part
+	if currentColor == blue then
+		playerPoints.Value += smallPoints
+	elseif currentColor == green then
+		playerPoints.Value += largePoints
+	else
+		playerPoints.Value -= losePoints
+	end
+
+	-- Destroy the part, wait a second, and then destroy the particle
+	pointPart:Destroy()
+
+	-- Creates a sparkles effect and destroys it
+	local playerCharacter = player.Character
+	local particle = Instance.new("ParticleEmitter")
+	particle.Color = ColorSequence.new(currentColor)
+	particle.Parent = playerCharacter:WaitForChild("Head")
+	task.wait(1)
+	particle:Destroy()
+end
+
+local function partTouched(otherPart)
+	local player = Players:GetPlayerFromCharacter(otherPart.Parent)
+
+	if player then
+		givePoints(player)
+	end
+end
+
+pointPart.Touched:Connect(partTouched)
+
+-- Changes the color of the part based on variables. Needs to be at bottom of script.
+while true do
+	pointPart.Color = blue
+	task.wait(4)
+	pointPart.Color = green
+	task.wait(3)
+	pointPart.Color = red
+	task.wait(2)
+end
+in service
+
+--In ServerScriptService, create a script named PlayerSetup with the contents below.
+
+local Players = game:GetService("Players")
+
+local function onPlayerJoin(player)
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+
+	-- Example of an IntValue
+	local points = Instance.new("IntValue")
+	points.Name = "Points"
+	points.Value = 0
+	points.Parent = leaderstats
+end
+
+-- Run onPlayerJoin when the PlayerAdded event fires
+Players.PlayerAdded:Connect(onPlayerJoin)

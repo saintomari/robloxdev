@@ -1,0 +1,16 @@
+--Speed watch
+
+local Players = game:GetService("Players")
+
+while true do
+	for _, player in pairs(Players:GetPlayers()) do
+		local character = player.Character
+		if character then
+			local humanoid = character:FindFirstChild("Humanoid")
+			if humanoid then
+				print(player.Name .. "'s walk speed is " .. humanoid.WalkSpeed)
+			end
+		end
+	end
+	wait(1)
+end
